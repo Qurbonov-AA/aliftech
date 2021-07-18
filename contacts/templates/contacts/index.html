@@ -1,0 +1,37 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h3 class="mt-5"> Контакты </h3>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-12"> 
+                <div class="row">
+                <input type="text" class="form-control col-md-10 col-lg-10 col-10" placeholder="search contact">
+                <span class="col-md-1 col-lg-1 col-1"> <i class="fa fa-search fa-2x" aria-hidden="true"></i> </span>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 col-12"> 
+               {% for contact in  contacts %}
+                    <ul >  {{ contact.username }}  
+                            <li > company  - {{ contact.company }}  </li>  
+                            <li > post  - {{ contact.post }}  </li> 
+                            <li>  {{ contact.email }}  </li>   
+                            <li>  {{ contact.mnumber }}  </li> 
+                    </ul> 
+               {% endfor %}  
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  ></script>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="{% static 'js/main.js' %}"> </script> 
+</body>
+</html>
