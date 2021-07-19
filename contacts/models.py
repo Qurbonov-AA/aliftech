@@ -16,7 +16,7 @@ class Contacts(models.Model):
 
     
     def __str__(self):
-        return str(self.username)
+        return f"{self.username}"
 
 
 class UserInfo(models.Model):

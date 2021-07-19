@@ -3,3 +3,20 @@ h3
     text-align: center;
     width: 100%;
 }
+a{
+    text-align: center;
+}
+.container
+{
+    box-shadow: 5px 7px rgba(3, 27, 41, 0.096);
+    border: rgba(3, 27, 41, 0.096);
+    border-radius: 10px;
+    background-color: rgba(211, 214, 216, 0.096);
+}
+span{
+    position: absolute;
+    margin-left: -5%;
+}
+span:hover span.i{
+    background-color: royalblue;
+}

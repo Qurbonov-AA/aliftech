@@ -7,31 +7,60 @@
 <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="contact">
         <div class="row">
-            <h3 class="mt-5"> Контакты </h3>
+            <h3 class="mt-5"> ||title|| </h3>
             <div class="col-md-12 col-sm-12 col-lg-12 col-12"> 
                 <div class="row">
-                <input type="text" class="form-control col-md-10 col-lg-10 col-10" placeholder="search contact">
-                <span class="col-md-1 col-lg-1 col-1"> <i class="fa fa-search fa-2x" aria-hidden="true"></i> </span>
+                <input type="text" 
+                       class="form-control col-md-10 col-lg-10 col-10" 
+                       placeholder="search contact"
+                       v-model="search">
+                <span class="col-md-1 col-lg-1 col-1"> <i class="fa fa-search fa-2x" 
+                                                          aria-hidden="true"
+                                                          @click="searchcontact()"></i> </span>
                 </div>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 col-12"> 
-               {% for contact in  contacts %}
-                    <ul >  {{ contact.username }}  
-                            <li > company  - {{ contact.company }}  </li>  
-                            <li > post  - {{ contact.post }}  </li> 
-                            <li>  {{ contact.email }}  </li>   
-                            <li>  {{ contact.mnumber }}  </li> 
-                    </ul> 
-               {% endfor %}  
+            <div class="col-md-12 col-sm-12 col-lg-12 col-12">                
+                    <ul v-for="item in contacts" class="list-group"> 
+                            <div class="row">
+                                <h3 class="col-md-8 col-sm-8 col-lg-8 col-8"> ||item.username|| </h3>  
+                                <a href="#" 
+                                   class="btn btn-outline-primary col-md-2 col-sm-2 col-lg-2 col-2"
+                                   @click="showdetails()" > <i :class="btn_class" aria-hidden="true"></i>||show|| </a>   
+                            </div>             
+                      <template v-if="ok == 1 ">
+                      <li class="list-group-item"> Компания - || item.company || </li>
+                      <li class="list-group-item"> Должность - || item.post || </li>  
+                       <ul class="list-group">
+                            <li v-for="list in item.contact" class="list-group-item"> Почта-|| list.email ||  Номер - || list.mnumber ||  </li>
+                            
+                       </ul>                    
+                      </template>     
+                    </ul>               
             </div>
         </div>
+        <div class="row mt-2">
+                <div class="col-md-2 col-sm-2 col-lg-2 col-2">
+                    <a href="#" class="btn btn-outline-success" @click="get_pages(previous)"> предидущая </a>
+
+                </div>
+                <div class="col-md-6 col-sm-6 col-lg-6 col-6">
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2 col-2">
+                    <a href="#" class="btn btn-outline-success" @click="get_pages(next)">   слудещая </a>
+                </div>
+            </div>
     </div>
+            
+            
+        
+        
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  ></script>
 <script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="{% static 'js/main.js' %}"> </script> 
 </body>
 </html>

@@ -3,6 +3,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView,RetrieveUpdateDes
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from contacts.serializer import GetContactsSerializer,GetUserInfoSerializer,UserInfoCRUDSerializer
 from contacts.models import Contacts,UserInfo
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 
@@ -41,3 +43,17 @@ class UserInfoCRUDView(RetrieveUpdateDestroyAPIView):
 
     queryset = UserInfo.objects.all()
     serializer_class = UserInfoCRUDSerializer   
+
+
+class ContactSearchView(APIView):
+
+    def get_queryset(self):
+        contact =  Contacts.objects.all() 
+        return contact
+    
+
+    def get(self, request, search):  
+
+        queryset = Contacts.objects.filter(username__contains=search)
+        serializer = GetContactsSerializer(queryset, many=True )
+        return Response(serializer.data)
