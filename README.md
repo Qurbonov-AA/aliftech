@@ -16,3 +16,8 @@ pip3 install -r req.txt
 
 windows 
 python -m pip install -r req.txt
+
+
+documentations 
+
+contact/swagger/
