@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 
 
 
+
+
 def index(request):    
     content = Contacts.objects.raw("SELECT * FROM public.contacts_contacts c , public.contacts_userinfo i WHERE c.id = i.contact_id ORDER BY c.username")
     return render(request,'contacts/index.html', {'contacts' : content})
